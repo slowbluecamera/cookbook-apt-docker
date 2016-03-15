@@ -29,7 +29,9 @@ default['apt-docker']['supported-codenames'] = {
 }
 
 uri = 'https://apt.dockerproject.org/repo'
-distribution = "#{node['platform']}-#{node['lsb']['codename']}"
+codename = node.attribute?('lsb') ? node['lsb']['codename'] : 'notlinux'
+distribution = "#{node['platform']}-#{codename}"
+
 keyserver = 'hkp://p80.pool.sks-keyservers.net:80'
 key = '58118E89F3A912897C070ADBF76221572C52609D'
 
